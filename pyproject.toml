@@ -1,0 +1,69 @@
+[tool.poetry]
+name = "data_manipulator"
+version = "0.1.0"
+description = "A simple python package wrapping business logic to manipulate data with IO from a variety of sources. See the project's readme for more info"
+authors = ["Matt McFahn <mattmcfahn161@hotmail.co.uk>"]
+license = "MIT License"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pydantic = "^1.9.1"
+python-dotenv = "^0.20.0"
+pandas = "^1.4.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+flake8 = "^4.0.1"
+black = "^22.6.0"
+pylint = "^2.14.5"
+pytest-cov = "^3.0.0"
+pre-commit = "^2.20.0"
+pytest-env = "^0.6.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+line_length = 120
+include_trailing_comma = true
+
+[tool.black]
+line-length = 120
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+
+[tool.pylint.format]
+max-line-length = 120
+
+[tool.pylint.basic]
+# https://pylint.pycqa.org/en/1.6.0/options.html
+variable-rgx = "[a-z_][a-z0-9_]{0,40}$"
+
+[tool.pylint.global]
+disable = ["W0511"]
+output-format = "colorized"
+
+
+[tool.pytest.ini_options]
+env = [
+    "INPUT_FILE=simple_input.csv"
+]
